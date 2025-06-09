@@ -34,7 +34,7 @@ El resultado es un **dashboard en HTML** que presenta KPIs clave, insights accio
 ## 🔗 Visualización del Proyecto
 
 Puedes ver el dashboard en vivo aquí:  
-➡️ [https://cgaeter.github.io/portfolio-analisis-datos/portfolio_dashboard.html](https://cgaeter.github.io/portfolio-analisis-datos/portfolio_dashboard.html) *(reemplaza con tu usuario de GitHub)*
+➡️ https://cgaeter.github.io/analisis-datos/
 
 ---
 
