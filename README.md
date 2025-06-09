@@ -34,7 +34,7 @@ El resultado es un **dashboard en HTML** que presenta KPIs clave, insights accio
 ## 🔗 Visualización del Proyecto
 
 Puedes ver el dashboard en vivo aquí:  
-➡️ https://cgaeter.github.io/Dashboard-Analisis-Operacionales/
+➡️ [https://cgaeter.github.io/Dashboard-Analisis-Operacionales/](https://cgaeter.github.io/Dashboard-Analisis-Operacionales/portfolio_dashboard.html)
 
 ---
 
