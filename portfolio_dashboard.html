@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Análisis de Datos Operacionales</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .insights-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .insights-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .insight-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .insight-icon {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 20px;
+            font-size: 18px;
+        }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-fill {
+            height: 20px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px;
+            animation: fillProgress 2s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .methodology {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .methodology h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .methodology-item {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .methodology-number {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: 700;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fillProgress {
+            from {
+                width: 0%;
+            }
+            to {
+                width: var(--progress-width);
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: rgba(255, 255, 255, 0.8);
+            animation: fadeInUp 1s ease-out 1.2s both;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Análisis de Datos Operacionales</h1>
+            <p>Transformando datos complejos en insights accionables para optimizar operaciones y mejorar la toma de decisiones estratégicas</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Hojas de Datos Analizadas</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">🏢</div>
+                <div class="stat-number">1,000+</div>
+                <div class="stat-label">Registros de Clientes</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">🚚</div>
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Rutas Optimizadas</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">📈</div>
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Precisión en Proyecciones</div>
+            </div>
+        </div>
+
+        <div class="insights-section">
+            <h2 class="insights-title">Insights Clave Identificados</h2>
+            
+            <div class="insight-item">
+                <div class="insight-icon">🎯</div>
+                <div>
+                    <strong>Segmentación de Clientes:</strong> Identificación de clientes fijos vs. provisionales, permitiendo estrategias diferenciadas de atención y fidelización.
+                </div>
+            </div>
+            
+            <div class="insight-item">
+                <div class="insight-icon">📍</div>
+                <div>
+                    <strong>Optimización Geográfica:</strong> Análisis por comunas y regiones (Norte, Centro) para maximizar eficiencia de rutas y reducir costos operativos.
+                </div>
+            </div>
+            
+            <div class="insight-item">
+                <div class="insight-icon">📅</div>
+                <div>
+                    <strong>Tendencias Temporales:</strong> Seguimiento mensual de realizaciones vs. proyecciones para ajustar estrategias operativas en tiempo real.
+                </div>
+            </div>
+            
+            <div class="insight-item">
+                <div class="insight-icon">⚡</div>
+                <div>
+                    <strong>Automatización de Reportes:</strong> Consolidación de múltiples fuentes de datos en dashboards ejecutivos para toma de decisiones ágil.
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h3 class="chart-title">Distribución de Eficiencia Operacional</h3>
+            
+            <div style="margin: 20px 0;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span>Clientes Fijos</span>
+                    <span>85%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="--progress-width: 85%; width: 85%;">85%</div>
+                </div>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span>Rutas Optimizadas</span>
+                    <span>92%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="--progress-width: 92%; width: 92%;">92%</div>
+                </div>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span>Proyecciones Cumplidas</span>
+                    <span>78%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="--progress-width: 78%; width: 78%;">78%</div>
+                </div>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span>Cobertura Regional</span>
+                    <span>96%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="--progress-width: 96%; width: 96%;">96%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="methodology">
+            <h2>Metodología de Análisis</h2>
+            <div class="methodology-grid">
+                <div class="methodology-item">
+                    <div class="methodology-number">1</div>
+                    <h3>Extracción</h3>
+                    <p>Consolidación de datos de múltiples fuentes Excel con validación de integridad</p>
+                </div>
+                
+                <div class="methodology-item">
+                    <div class="methodology-number">2</div>
+                    <h3>Transformación</h3>
+                    <p>Limpieza, normalización y estructuración de datos para análisis consistente</p>
+                </div>
+                
+                <div class="methodology-item">
+                    <div class="methodology-number">3</div>
+                    <h3>Análisis</h3>
+                    <p>Aplicación de técnicas estadísticas y algoritmos de optimización de rutas</p>
+                </div>
+                
+                <div class="methodology-item">
+                    <div class="methodology-number">4</div>
+                    <h3>Visualización</h3>
+                    <p>Creación de dashboards interactivos y reports ejecutivos automatizados</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="insights-section">
+            <h2 class="insights-title">Tecnologías Utilizadas</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div style="text-align: center; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">📊</div>
+                    <strong>Excel Avanzado</strong>
+                    <p>Pivot Tables, Macros, Power Query</p>
+                </div>
+                <div style="text-align: center; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">🐍</div>
+                    <strong>Python</strong>
+                    <p>Pandas, NumPy, Matplotlib</p>
+                </div>
+                <div style="text-align: center; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">📈</div>
+                    <strong>Business Intelligence</strong>
+                    <p>Power BI, Tableau, SQL</p>
+                </div>
+                <div style="text-align: center; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">☁️</div>
+                    <strong>Cloud Analytics</strong>
+                    <p>AWS, Google Analytics, Azure</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Portfolio creado con análisis de datos reales • Especialista en Business Intelligence y Optimización Operacional</p>
+        </div>
+    </div>
+
+    <script>
+        // Animación adicional para las barras de progreso
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fillProgress 2s ease-out';
+                    }
+                });
+            });
+            
+            progressBars.forEach(bar => {
+                observer.observe(bar);
+            });
+        });
+
+        // Efecto de hover mejorado para las tarjetas
+        document.querySelectorAll('.stat-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
